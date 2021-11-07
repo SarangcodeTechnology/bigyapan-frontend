@@ -1,77 +1,77 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-container fluid>
+    <v-row>
+      <v-progress-linear :active="isLoading" background-color="primary lighten-9" color="secondary"
+                         indeterminate></v-progress-linear>
+      <v-col v-for="(item,id) in itemsPaginatedData.data" :key="item.id" cols="3">
+        <v-skeleton-loader v-if="isLoading"
+                           type="card"
+        ></v-skeleton-loader>
+        <v-card v-else rounded="lg" @click="getItemDetail">
+          <v-card-title>
+            <v-row>
+              <v-col cols="7">
+                <span><strong>{{ item.item_name }}</strong></span>
+              </v-col>
+              <v-col class="d-inline-flex align-content-end justify-end" cols="5">
+                <span><strong> रू. {{ item.item_price }} </strong></span>
+              </v-col>
+            </v-row>
+          </v-card-title>
+          <v-card-subtitle>
+            <span>{{ item.item_category.title }} - {{ item.item_sub_category.title }}</span>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon :color="item.item_price_negotiable?'success':'error'" right v-bind="attrs" x-small v-on="on">fas
+                  fa-comment-dollar
+                </v-icon>
+              </template>
+              <span v-if="item.item_price_negotiable">Price Negotiable</span>
+              <span v-else>Price Non Negotiable</span>
+            </v-tooltip>
+          </v-card-subtitle>
+
+          <v-card-text>
+            <span>{{ item.item_description ? item.item_description.substring(0, 30) + ".." : "" }}</span>
+          </v-card-text>
+          <v-card-text class="py-0 d-inline-flex justify-end" cols="12">
+            <span> {{  $moment.utc(item.created_at).local().fromNow()   }}</span>
+            <v-spacer></v-spacer>
+            <span class="overline"> {{ item.user.name }}</span>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
+<script>
+import {mapActions, mapGetters} from "vuex";
+
+export default {
+  name: 'index',
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters("item", ["itemsPaginatedData", "isLoading"]),
+    ...mapGetters("webservice", ["query"]),
+
+  },
+  methods: {
+    ...mapActions("item", ["fetchAllItems"]),
+    getDataFromApi() {
+      this.fetchAllItems(this.query);
+    },
+    getItemDetail() {
+    }
+  },
+  created() {
+    this.getDataFromApi();
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

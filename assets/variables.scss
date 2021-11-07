@@ -2,3 +2,103 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+
+
+//Bigyapan Primary Colors
+$bigyapan-primary-base: #307EB7;
+$bigyapan-primary-lighten1: #458BBE;
+$bigyapan-primary-lighten2: #5998C5;
+$bigyapan-primary-lighten3: #6EA5CD;
+$bigyapan-primary-lighten4: #83B2D4;
+$bigyapan-primary-lighten5: #98BFDB;
+$bigyapan-primary-lighten6: #ACCBE2;
+$bigyapan-primary-lighten7: #C1D8E9;
+$bigyapan-primary-lighten8: #D6E5F1;
+$bigyapan-primary-lighten9: #EAF2F8;
+$bigyapan-primary-darken1: #2B71A5;
+$bigyapan-primary-darken2: #266592;
+$bigyapan-primary-darken3: #225880;
+$bigyapan-primary-darken4: #1D4C6E;
+$bigyapan-primary-darken5: #183F5C;
+$bigyapan-primary-darken6: #133249;
+$bigyapan-primary-darken7: #0E2637;
+$bigyapan-primary-darken8: #0A1925;
+$bigyapan-primary-darken9: #050D12;
+
+$bigyapan-secondary-base: #FB8C00;
+$bigyapan-secondary-lighten1: #FB981A;
+$bigyapan-secondary-lighten2: #FCA333;
+$bigyapan-secondary-lighten3: #FCAF4D;
+$bigyapan-secondary-lighten4: #FDBA66;
+$bigyapan-secondary-lighten5: #FDC680;
+$bigyapan-secondary-lighten6: #FDD199;
+$bigyapan-secondary-lighten7: #FEDDB3;
+$bigyapan-secondary-lighten8: #FEE8CC;
+$bigyapan-secondary-lighten9: #FFF4E6;
+$bigyapan-secondary-darken1: #E27E00;
+$bigyapan-secondary-darken2: #C97000;
+$bigyapan-secondary-darken3: #B06200;
+$bigyapan-secondary-darken4: #975400;
+$bigyapan-secondary-darken5: #7E4600;
+$bigyapan-secondary-darken6: #643800;
+$bigyapan-secondary-darken7: #4B2A00;
+$bigyapan-secondary-darken8: #321C00;
+$bigyapan-secondary-darken9: #190E00;
+
+
+$bigyapan-black-base: #000000;
+$bigyapan-black-lighten1: #212121;
+$bigyapan-black-lighten2: #424242;
+$bigyapan-black-lighten3: #616161;
+$bigyapan-black-lighten4: #757575;
+$bigyapan-black-lighten5: #9E9E9E;
+$bigyapan-black-lighten6: #BDBDBD;
+$bigyapan-black-lighten7: #E0E0E0;
+$bigyapan-black-lighten8: #EEEEEE;
+$bigyapan-black-lighten9: #F5F5F5;
+
+$bigyapan-white: #ffffff;
+
+@font-face {
+  font-family: 'Koch';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/Koch Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Koch';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('./assets/fonts/Koch Bold.ttf') format('truetype');
+}
+
+$font-size-root: 16px;
+
+$icon-size: 20px !important;
+$icon-size-dense: 16px !important;
+
+$body-font-family: 'Nunito', sans-serif !important;
+$heading-font-family: 'Koch', sans-serif;
+
+$card-elevation: 0 !default;
+$card-hover-elevation: 2 !default;
+
+$material-light: (
+  'background': $bigyapan-white,
+  'app-bar': $bigyapan-white,
+  'cards': $bigyapan-primary-lighten9,
+  'toolbar': $bigyapan-primary-darken1,
+  'navigation-drawer': $bigyapan-primary-lighten9 !important,
+);
+
+$material-dark: (
+  'background': $bigyapan-primary-darken2,
+  'app-bar': $bigyapan-primary-darken2,
+  'cards':$bigyapan-primary-darken1,
+  'toolbar': $bigyapan-primary-darken4,
+  'navigation-drawer': $bigyapan-primary-darken2 !important,
+);
