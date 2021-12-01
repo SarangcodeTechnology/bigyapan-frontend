@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <v-app  class="ma-0 pa-0">
     <MainHeader/>
     <v-main>
-      <v-container fluid>
+      <v-container class="mt-6" fluid>
         <Nuxt/>
       </v-container>
     </v-main>
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+.no-uppercase {
+  text-transform: none;
+}
 </style>

@@ -7,7 +7,15 @@
         <v-skeleton-loader v-if="isLoading"
                            type="card"
         ></v-skeleton-loader>
-        <v-card v-else rounded="lg" @click="getItemDetail">
+        <v-card v-else rounded="lg" @click="getItemDetail(item.id)">
+          <v-img
+            :src="item.item_images != null ? backendBaseUrl+'storage/images/item-images/'+JSON.parse(item.item_images.item_image_large)[0] : '/images/user_image_placeholder.png'"
+            height="250"
+          ></v-img>
+          <!--          <template v-for="subItem in JSON.parse(item.item_images) " >-->
+<!--          <p>{{ item.item_images != null ? item.item_images.id : '' }}</p>-->
+          <!--          </template>-->
+
           <v-card-title>
             <v-row>
               <v-col cols="7">
@@ -35,7 +43,7 @@
             <span>{{ item.item_description ? item.item_description.substring(0, 30) + ".." : "" }}</span>
           </v-card-text>
           <v-card-text class="py-0 d-inline-flex justify-end" cols="12">
-            <span> {{  $moment.utc(item.created_at).local().fromNow()   }}</span>
+            <span> {{ $moment.utc(item.created_at).local().fromNow() }}</span>
             <v-spacer></v-spacer>
             <span class="overline"> {{ item.user.name }}</span>
           </v-card-text>
@@ -51,7 +59,9 @@ import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'index',
   data() {
-    return {};
+    return {
+      backendBaseUrl: process.env.BACKEND_BASE_URL,
+    };
   },
   computed: {
     ...mapGetters("item", ["itemsPaginatedData", "isLoading"]),
@@ -61,9 +71,12 @@ export default {
   methods: {
     ...mapActions("item", ["fetchAllItems"]),
     getDataFromApi() {
+      let temp = this;
       this.fetchAllItems(this.query);
+
     },
-    getItemDetail() {
+    getItemDetail(id) {
+      this.$router.push(`/item/${id}`);
     }
   },
   created() {

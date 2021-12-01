@@ -77,7 +77,10 @@ const state = () => ({
     item_category_id: null,
     item_sub_category_id: null,
     user: {
-      name: ""
+      name: "",
+      user_details:{
+        phone_number:""
+      }
     },
     item_category: {
       title: ""
@@ -148,7 +151,7 @@ const actions = {
     await this.$axios.get(`${process.env.BACKEND_API_URL}items/${id}`, {
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer " + state.rootGetters['auth/GET_ACCESS_TOKEN']
+        Authorization: "Bearer " + state.rootGetters['auth/accessToken']
       }
     })
       .then(res => {
@@ -164,7 +167,7 @@ const actions = {
     await this.$axios.post(`${process.env.BACKEND_API_URL}items/${item.id}?_method=PUT`, item, {
       headers: {
         Accept: 'application/json',
-        Authorization: "Bearer " + state.rootGetters['auth/GET_ACCESS_TOKEN']
+        Authorization: "Bearer " + state.rootGetters['auth/accessToken']
       }
     }).then(res => {
       state.commit('saveUpdatedItem', res.data.data);
@@ -180,7 +183,7 @@ const actions = {
       `${process.env.BACKEND_API_URL}items`, item, {
         headers: {
           Accept: "application/json",
-          Authorization: "Bearer " + state.rootGetters['auth/GET_ACCESS_TOKEN']
+          Authorization: "Bearer " + state.rootGetters['auth/accessToken']
         }
       }
     ).then(res => {
@@ -216,7 +219,7 @@ const actions = {
     await this.$axios.get(url, {
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer " + state.rootGetters['auth/GET_ACCESS_TOKEN']
+        Authorization: "Bearer " + state.rootGetters['auth/accessToken']
       }
     })
       .then(res => {
