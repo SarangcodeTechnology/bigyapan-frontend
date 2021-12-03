@@ -106,7 +106,7 @@
             </v-card>
 
           </v-menu>
-          <v-btn class="px-6" color="secondary" depressed>
+          <v-btn class="px-6" color="secondary" depressed @click="openSellForm()">
             <v-icon left>fas fa-hand-holding-usd</v-icon>
             <span>Sell</span>
           </v-btn>
@@ -167,6 +167,13 @@ export default {
     },
   },
   methods: {
+    openSellForm(){
+      if (this.isLogin){
+        this.$router.push("/item/create");
+      }else{
+        this.$router.push("/login");
+      }
+    },
     search() {
     },
     changeLocale(item) {
