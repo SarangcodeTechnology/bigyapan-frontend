@@ -132,14 +132,17 @@
                     <v-col cols="6">
                       <v-file-input v-model="item_images" filled
                                     label="Item Images"
-                                    multiple name="item.item_images"
+                                    multiple name="item_images"
                                     placeholder="Please upload the item images..."
                                     prepend-icon=""
                                     prepend-inner-icon="fas fa-camera" @change="previewImage"
                       ></v-file-input>
                       <v-container fill-height>
                         <v-row align="center" justify="center">
-
+                        <template v-for = "previewImage in previewImageUrl">
+                          <v-img :aspect-ratio="1/1"
+                                 :src="previewImage?previewImage :'/images/user_image_placeholder.png'"></v-img>
+                        </template>
 
                         </v-row>
                       </v-container>
@@ -174,14 +177,101 @@
     </v-stepper-content>
 
     <v-stepper-content step="3">
-      <v-card
+      <v-card>
+        <h1 align="center">Review and Confirm the details</h1>
+        <v-form readonly>
+          <v-row>
+            <v-col>
+              <v-card>
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="6">
+                      <ol>
+                      <li>Sold by: {{}}</li>
+                      <li>Seller Phone no: {{}}</li>
+                      <li> Seller e-mail address: {{}}</li>
+                      </ol>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col>
+              <v-card>
+                <v-card-text>
+                  <v-row>
+                    <v-col cols="6"
 
-      >
-        <h1>Name : </h1>
+                    >
+                      <v-text-field
+                        v-model="item_name"
+                        :error-messages="nameErrors"
+                        :counter="10"
+                        label="Item Name"
+                        required
+                        @input="$v.item_name.$touch()"
+                        @blur="$v.item_name.$touch()"
+                      ></v-text-field>
+                      <v-text-field
+                        v-model="price"
+                        label="Price"
+                        placeholder="Enter the price of the product"
+                        :error-messages="priceErrors"
+                        type= "number"
+                        required
+                        @input="$v.price.$touch()"
+                        @blur="$v.price.$touch()"
+                      ></v-text-field>
+
+                      <v-text-field
+                        v-model="item_description"
+                        name="item_description"
+                        :error-messages="descriptionErrors"
+                        :counter="40"
+                        label="Item Description"
+                        placeholder="Give a short description about the product"
+                        required
+                        @input="$v.item_description.$touch()"
+                        @blur="$v.item_description.$touch()"
+                      ></v-text-field>
+                      <v-col  cols="6">
+                        <v-file-input v-model="item_images" filled
+                                      label="Item Images"
+                                      multiple name="item_images"
+                                      placeholder="Please upload the item images..."
+                                      prepend-icon=""
+                                      prepend-inner-icon="fas fa-camera" @change="previewImage"
+                        ></v-file-input>
+                        <v-container fill-height>
+                          <v-row align="center" justify="center">
+                            <template v-for = "previewImage in previewImageUrl">
+                              <v-img :aspect-ratio="1/1"
+                                     :src="previewImage?previewImage :'/images/user_image_placeholder.png'"></v-img>
+                            </template>
+
+                          </v-row>
+                        </v-container>
+                      </v-col>
+
+
+                      <v-checkbox
+                        v-model="price_negotiable"
+                        label="Price Negotiable?"
+                        required
+                      ></v-checkbox>
+
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+
+        </v-form>
       </v-card>
       <v-btn
         color="primary"
-        @click="e1 = 1"
+        @click="e1=1"
       >
         Confirm
       </v-btn>
@@ -306,6 +396,7 @@ export default {
     this.getItemCategories();
   },
   computed:{
+    ...mapGetters("auth",["user"]),
     itemSubCategories: function () {
       const temp = this;
       let data = [];
