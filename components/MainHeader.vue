@@ -57,8 +57,8 @@
               <v-btn fab icon v-bind="attrs" v-on="on">
                 <v-avatar v-if="user.user_details.user_image">
                   <img
-                    alt="user-image"
                     :src="backendBaseUrl+'storage/images/user-images/'+user.user_details.user_image"
+                    alt="user-image"
                   >
                 </v-avatar>
                 <v-icon v-else>fas fa-user</v-icon>
@@ -69,8 +69,8 @@
                 <v-list-item>
                   <v-list-item-avatar v-if="user.user_details.user_image">
                     <img
-                      alt="user-image"
                       :src="backendBaseUrl+'storage/images/user-images/'+user.user_details.user_image"
+                      alt="user-image"
                     >
                   </v-list-item-avatar>
                   <v-list-item-avatar v-else>
@@ -135,8 +135,8 @@
                             itemCategory.title
                           }}</h1></nuxt-link>
                         <template v-for="itemSubCategory in itemCategory.item_sub_categories">
-                          <nuxt-link :to="{ path: '/filter-items', query: { itemCategory: itemCategory.id, itemSubCategory:itemSubCategory.id },
-                          props : true}">
+                          <nuxt-link
+                            :to="{ path: '/filter-items', query: { itemCategory: itemCategory.id, itemSubCategory:itemSubCategory.id }}">
                             <h1 class="subtitle-1">{{ itemSubCategory.title }}</h1>
                           </nuxt-link>
 

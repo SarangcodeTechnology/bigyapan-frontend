@@ -1,23 +1,25 @@
 <template>
-<h1>{{ this.query }}</h1>
+  <h1></h1>
 </template>
 
 <script>
-export default {
+import {mapActions} from "vuex";
 
-  // data(){
-  //   return{
-  //     query: {
-  //       itemCategory: null,
-  //       itemSubCategory: null
-  //     }
-  //   }
-  // },
+export default {
+  data() {
+    return {
+    }
+  },
   name: "filter-items",
-/*  created() {
-    console.log(this.$route.query)
-  this.query = this.$route.query
-  }*/
+  methods:{
+    ...mapActions("item",["filterItems"])
+  },
+  mounted() {
+    this.filterItems(this.$route.query).then(function(response){
+      console.log(response);
+    })
+
+  }
 }
 </script>
 

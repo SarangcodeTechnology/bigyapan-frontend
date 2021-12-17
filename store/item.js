@@ -78,8 +78,8 @@ const state = () => ({
     item_sub_category_id: null,
     user: {
       name: "",
-      user_details:{
-        phone_number:""
+      user_details: {
+        phone_number: ""
       }
     },
     item_category: {
@@ -146,6 +146,20 @@ const mutations = {
 };
 
 const actions = {
+  filterItems(state, query) {
+    return new Promise(((resolve, reject) => {
+      this.$axios.post(`${process.env.BACKEND_API_URL}filter-items`, query, {
+        headers: {
+          Accept: 'application/json',
+        }
+      }).then(function (response) {
+        resolve(response)
+      }).catch(function (error) {
+        reject(error)
+      });
+    }))
+
+  },
   async fetchDetailItem(state, id) {
     state.commit('setItemIsLoading', true);
     await this.$axios.get(`${process.env.BACKEND_API_URL}items/${id}`, {
