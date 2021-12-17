@@ -51,7 +51,8 @@
             </template>
             <span>Login/Register</span>
           </v-tooltip>
-          <v-menu v-else :close-on-content-click="true" offset-overflow offset-y transition="slide-x-reverse-transition">
+          <v-menu v-else :close-on-content-click="true" offset-overflow offset-y
+                  transition="slide-x-reverse-transition">
             <template v-slot:activator="{on,attrs}">
               <v-btn fab icon v-bind="attrs" v-on="on">
                 <v-avatar v-if="user.user_details.user_image">
@@ -80,8 +81,8 @@
                   </v-list-item-avatar>
 
                   <v-list-item-content>
-                    <v-list-item-title>{{user.name}}</v-list-item-title>
-                    <v-list-item-subtitle>{{user.email}}</v-list-item-subtitle>
+                    <v-list-item-title>{{ user.name }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
                 <v-divider/>
@@ -173,10 +174,10 @@ export default {
     },
   },
   methods: {
-    openSellForm(){
-      if (this.isLogin){
+    openSellForm() {
+      if (this.isLogin) {
         this.$router.push("/item/create");
-      }else{
+      } else {
         this.$router.push("/login");
       }
     },
@@ -206,7 +207,7 @@ export default {
   },
   computed: {
     ...mapGetters("webservice", ["query"]),
-    ...mapGetters("auth", ["isLogin","user"]),
+    ...mapGetters("auth", ["isLogin", "user"]),
     availableLocales() {
       return this.$i18n.locales;
     }
