@@ -130,9 +130,15 @@
                   <v-container fluid>
                     <v-row>
                       <v-col v-for="itemCategory in itemCategories" :key="itemCategory.id" class="pa-6" cols="3">
-                        <h1 class="title">{{ itemCategory.title }}</h1>
+                        <nuxt-link :to="`/filter-items?=itemCategory=${itemCategory.id}`"><h1 class="title">{{
+                            itemCategory.title
+                          }}</h1></nuxt-link>
                         <template v-for="itemSubCategory in itemCategory.item_sub_categories">
-                          <h1 class="subtitle-1">{{ itemSubCategory.title }}</h1>
+                          <nuxt-link :to="{ path: '/filter-items', query: { itemCategory: itemCategory.id, itemSubCategory:itemSubCategory.id },
+                          props : true}">
+                            <h1 class="subtitle-1">{{ itemSubCategory.title }}</h1>
+                          </nuxt-link>
+
                         </template>
                       </v-col>
                     </v-row>
