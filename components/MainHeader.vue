@@ -179,7 +179,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "MainHeader",
@@ -197,6 +197,13 @@ export default {
     },
   },
   methods: {
+    ...mapActions("item", ["fetchAllFilterItems"]),
+    filterItems(query) {
+      let temp = this;
+      this.fetchAllFilterItems(query).then(function (response) {
+        temp.$router.push('/filter-items')
+      })
+    },
     openSellForm() {
       if (this.isLogin) {
         this.$router.push("/item/create");
