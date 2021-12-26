@@ -130,18 +130,41 @@
                 <v-card>
                   <v-container fluid>
                     <v-row>
-                      <v-col v-for="itemCategory in itemCategories" :key="itemCategory.id" class="pa-6" cols="3">
-                        <nuxt-link :to="`/filter-items?=itemCategory=${itemCategory.id}`"><h1 class="title">{{
-                            itemCategory.title
-                          }}</h1></nuxt-link>
-                        <template v-for="itemSubCategory in itemCategory.item_sub_categories">
-                          <nuxt-link
-                            :to="{ path: '/filter-items', query: { itemCategory: itemCategory.id, itemSubCategory:itemSubCategory.id }}">
-                            <h1 class="subtitle-1">{{ itemSubCategory.title }}</h1>
-                          </nuxt-link>
+                      <v-list>
+                        <v-list-group  v-for="itemCategory in itemCategories" :key="itemCategory.id" @click="filterItems({ itemCategory: itemCategory.id})">
+                          <template v-slot:activator>
+                            <v-list-item-content>
+                              <v-list-item-title v-text="itemCategory.title"></v-list-item-title>
+                            </v-list-item-content>
+                          </template>
+                          <v-list-item v-for="itemSubCategory in itemCategory.item_sub_categories" :key="itemSubCategory.id" @click="filterItems({ itemCategory: itemCategory.id, itemSubCategory: itemSubCategory.id})">
+                            <v-list-item-content>
+                              <v-list-item-title v-text="itemSubCategory.title"></v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-list-group>
 
-                        </template>
-                      </v-col>
+                      </v-list>
+
+
+<!--                      <v-col  v-for="itemCategory in itemCategories" :key="itemCategory.id" class="pa-6" cols="3">-->
+
+<!--                        <v-btn @click="filterItems({ itemCategory: itemCategory.id})" text>-->
+<!--                          {{-->
+<!--                            itemCategory.title-->
+<!--                          }}-->
+<!--                        </v-btn>-->
+<!--                        &lt;!&ndash;                        <nuxt-link :to="`/filter-items`"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                                   @click="filterItems({ itemCategory: itemCategory.id})"&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        ><h1 class="title"></h1></nuxt-link>&ndash;&gt;-->
+<!--                        <template v-for="itemSubCategory in itemCategory.item_sub_categories">-->
+<!--                          <nuxt-link-->
+<!--                            :to="{ path: '/filter-items', query: { itemCategory: itemCategory.id, itemSubCategory:itemSubCategory.id }}">-->
+<!--                            <h1 class="subtitle-1">{{ itemSubCategory.title }}</h1>-->
+<!--                          </nuxt-link>-->
+
+<!--                        </template>-->
+<!--                      </v-col>-->
                     </v-row>
                   </v-container>
                 </v-card>

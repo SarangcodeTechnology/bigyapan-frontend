@@ -255,6 +255,48 @@ const actions = {
       })
 
   },
+  async fetchAllFilterItems(state, query = null) {
+      let page = query.page ? query.page : '';
+      let search = query.search? query.search : '';
+      let perPage = query.perPage? query.perPage : '';
+      let sortBy = query.sortBy? query.page : '';
+      let sortDesc = query.sortDesc? query.sortDesc : '';
+      let itemCategory = query.itemCategory? query.itemCategory : '';
+      let itemSubCategory = query.itemSubCategory? query.itemSubCategory : '';
+    state.commit('setItemIsLoading', true);
+    let url = `${process.env.BACKEND_API_URL}filter-items`;
+    if (search === null || search.length <= 0) {
+      url = `${url}?page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortDesc=${sortDesc}&itemCategory=${itemCategory}&itemSubCategory=${itemSubCategory}`;
+    } else {
+      url = `${url}?page=${page}&perPage=${perPage}&sortBy=${sortBy}&sortDesc=${sortDesc}&search=${search}&itemCategory=${itemCategory}&itemSubCategory=${itemSubCategory}`;
+    }
+
+    await this.$axios.get(url, {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + state.rootGetters['auth/accessToken']
+      }
+    })
+      .then(res => {
+        const items = res.data.data;
+        state.commit('setItems', items);
+        const pagination = {
+          total: res.data.data.total,  // total number of elements or items
+          per_page: res.data.data.per_page, // items per page
+          current_page: res.data.data.current_page, // current page (it will be automatically updated when itemCategories clicks on some page number).
+          total_pages: res.data.data.last_page // total pages in record
+        }
+        res.data.data.pagination = pagination;
+        state.commit('setItemsPaginated', res.data.data);
+        state.commit('setItemIsLoading', false);
+      })
+      .catch(err => {
+        console.log('error', err);
+        state.commit('setItemIsLoading', false);
+      })
+
+  },
+
   async deleteItem() {
 
   },
