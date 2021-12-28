@@ -9,7 +9,7 @@
         ></v-skeleton-loader>
         <v-card v-else rounded="lg" @click="getItemDetail(item.id)">
           <v-img
-            :src="item.item_images != null ? backendBaseUrl+'storage/images/item-images/'+JSON.parse(item.item_images.item_image_large)[0] : '/images/user_image_placeholder.png'"
+            :src="item.item_images != null ? backendBaseUrl+'storage/images/item-images/'+JSON.parse(item.item_images.item_image_large)[0] : '/images/item_image_placeholder.png'"
             height="250"
           ></v-img>
           <!--          <template v-for="subItem in JSON.parse(item.item_images) " >-->

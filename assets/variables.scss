@@ -78,8 +78,8 @@ $bigyapan-white: #ffffff;
 
 $font-size-root: 16px;
 
-$icon-size: 20px !important;
-$icon-size-dense: 16px !important;
+//$icon-size: 20px !important;
+//$icon-size-dense: 16px !important;
 
 $body-font-family: 'Roboto', sans-serif !important;
 $heading-font-family: 'Koch', sans-serif;
@@ -90,8 +90,8 @@ $card-hover-elevation: 2 !default;
 $material-light: (
   'background': $bigyapan-white,
   'app-bar': $bigyapan-white,
-  'cards': $bigyapan-primary-lighten9,
-  'toolbar': $bigyapan-primary-darken1,
+  'cards': $bigyapan-black-lighten9,
+  'toolbar': $bigyapan-black-lighten9,
   'navigation-drawer': $bigyapan-primary-lighten9 !important,
 );
 
@@ -99,6 +99,6 @@ $material-dark: (
   'background': $bigyapan-primary-darken2,
   'app-bar': $bigyapan-primary-darken2,
   'cards':$bigyapan-primary-darken1,
-  'toolbar': $bigyapan-primary-darken4,
+  'toolbar': $bigyapan-primary-darken1,
   'navigation-drawer': $bigyapan-primary-darken2 !important,
 );

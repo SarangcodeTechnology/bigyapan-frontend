@@ -1,15 +1,16 @@
 <template>
-  <v-container fluid>
+  <client-only>
+    <v-container fluid>
+    <v-progress-linear :active="isLoading" background-color="primary lighten-9" color="secondary"
+                       indeterminate></v-progress-linear>
     <v-row>
-      <v-progress-linear :active="isLoading" background-color="primary lighten-9" color="secondary"
-                         indeterminate></v-progress-linear>
       <v-col v-for="(item,id) in itemsPaginatedData.data" :key="item.id" cols="3">
         <v-skeleton-loader v-if="isLoading"
                            type="card"
         ></v-skeleton-loader>
         <v-card v-else rounded="lg" @click="getItemDetail(item.id)">
           <v-img
-            :src="item.item_images != null ? backendBaseUrl+'storage/images/item-images/'+JSON.parse(item.item_images.item_image_large)[0] : '/images/user_image_placeholder.png'"
+            :src="item.item_images != null ? backendBaseUrl+'storage/images/item-images/'+JSON.parse(item.item_images.item_image_large)[0] : '/images/item_image_placeholder.png'"
             height="250"
           ></v-img>
           <!--          <template v-for="subItem in JSON.parse(item.item_images) " >-->
@@ -51,6 +52,8 @@
       </v-col>
     </v-row>
   </v-container>
+  </client-only>
+
 </template>
 
 <script>

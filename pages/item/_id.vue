@@ -2,18 +2,19 @@
   <v-container fluid>
     <v-row>
       <v-col cols="6">
-        <v-card>
-          <v-carousel>
-            <v-carousel-item
-              v-for="(image,i) in item.item_images!=null ? JSON.parse(item.item_images.item_image_large):[]"
-              :key="i"
-              :src="backendBaseUrl+'storage/images/item-images/'+image"
-              reverse-transition="fade-transition"
-              transition="fade-transition"
-            ></v-carousel-item>
-          </v-carousel>
-
-        </v-card>
+        <client-only>
+          <v-card>
+            <v-carousel>
+              <v-carousel-item
+                v-for="(image,i) in item.item_images!=null ? JSON.parse(item.item_images.item_image_large):[]"
+                :key="i"
+                :src="backendBaseUrl+'storage/images/item-images/'+image"
+                reverse-transition="fade-transition"
+                transition="fade-transition"
+              ></v-carousel-item>
+            </v-carousel>
+          </v-card>
+        </client-only>
       </v-col>
       <v-col cols="6">
         <v-card>

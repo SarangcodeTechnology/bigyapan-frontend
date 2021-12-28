@@ -141,7 +141,7 @@
                             <v-row align="center" justify="center">
                               <template v-for="previewImage in previewImageUrl">
                                 <v-img :aspect-ratio="1/1"
-                                       :src="previewImage?previewImage :'/images/user_image_placeholder.png'"></v-img>
+                                       :src="previewImage?previewImage :'/images/item_image_placeholder.png'"></v-img>
                               </template>
 
                             </v-row>
@@ -246,7 +246,7 @@
                             <v-row align="center" justify="center">
                               <template v-for="previewImage in previewImageUrl">
                                 <v-img :aspect-ratio="1/1"
-                                       :src="previewImage?previewImage :'/images/user_image_placeholder.png'"></v-img>
+                                       :src="previewImage?previewImage :'/images/item_image_placeholder.png'"></v-img>
                               </template>
 
                             </v-row>
