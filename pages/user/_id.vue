@@ -30,7 +30,7 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 export default {
-  name: "_id",
+  name: "id",
   data(){
 
     return{
