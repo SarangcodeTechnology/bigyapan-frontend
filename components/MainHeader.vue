@@ -66,7 +66,7 @@
             </template>
             <v-card>
               <v-list>
-                <v-list-item>
+                <v-list-item  :to="`/user/${user.id}`">
                   <v-list-item-avatar v-if="user.user_details.user_image">
                     <img
                       :src="backendBaseUrl+'storage/images/user-images/'+user.user_details.user_image"

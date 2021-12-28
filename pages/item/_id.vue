@@ -54,7 +54,7 @@
           <v-card-subtitle>
             <v-row>
               <v-col cols="6">
-                <h2>{{ item.user.name }}</h2>
+                <v-btn elevation="0"  :to="`/user/${item.user.id}`">{{ item.user.name }}</v-btn>
               </v-col>
               <v-col align="right" cols="6" justify="right">
                 <v-btn :href="'tel:+'+item.user.user_details.phone_number" color="success" depressed>
